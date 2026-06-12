@@ -1,6 +1,6 @@
 # Friday Email Reminder
 
-这是一个使用 Go + GitHub Actions 的周报提醒项目（保留 Python 版本供本地对照）。
+这是一个使用 Rust + GitHub Actions 的周报提醒项目（保留 Go / Python 版本供本地对照）。
 
 ## 功能
 
@@ -10,9 +10,10 @@
 
 ## 文件说明
 
-- `cmd/send_reminder/main.go`：发送提醒邮件的 Go 脚本（GitHub Actions 使用）
-- `go.mod`：Go 模块定义
-- `send_reminder.py`：发送提醒邮件的 Python 脚本（保留，可本地对照）
+- `src/main.rs`：发送提醒邮件的 Rust 脚本（GitHub Actions 使用）
+- `Cargo.toml`：Rust 项目定义
+- `cmd/send_reminder/main.go`：Go 版本（保留，可本地对照）
+- `send_reminder.py`：Python 版本（保留，可本地对照）
 - `.github/workflows/weekly-reminder.yml`：GitHub Actions 定时任务
 
 ## GitHub Secrets 配置
@@ -40,10 +41,10 @@ GitHub Actions 使用 UTC 时间。
 
 ## 本地测试
 
-先设置环境变量，再运行 Go 版本：
+先设置环境变量，再运行 Rust 版本：
 
 ```bash
-go run ./cmd/send_reminder
+cargo run --release
 ```
 
 例如在 PowerShell 中：
@@ -54,12 +55,13 @@ $env:SMTP_PORT="587"
 $env:SMTP_USER="your@email.com"
 $env:SMTP_PASSWORD="your_smtp_password"
 $env:EMAIL_TO="target@email.com"
-go run ./cmd/send_reminder
+cargo run --release
 ```
 
-也可使用 Python 版本对照测试：
+也可使用 Go / Python 版本对照测试：
 
 ```powershell
+go run ./cmd/send_reminder
 python .\send_reminder.py
 ```
 

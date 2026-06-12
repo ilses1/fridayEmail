@@ -13,10 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Run reminder script
         env:
@@ -28,4 +26,4 @@ jobs:
           MAIL_SENDER_NAME: 周报提醒
           MAIL_SUBJECT: 周报提醒：请写一下周报
           MAIL_CONTENT: 今天是周五，记得写一下本周周报，整理本周工作进展、问题和下周计划。
-        run: go run ./cmd/send_reminder
+        run: cargo run --release
