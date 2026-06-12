@@ -20,12 +20,12 @@ jobs:
 
       - name: Run reminder script
         env:
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          EMAIL_SUBJECT: 周报提醒：请写一下周报
-          EMAIL_BODY: 今天是周五，记得写一下本周周报，整理本周工作进展、问题和下周计划。
-          SENDER_NAME: 周报提醒
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
+          MAIL_SENDER_NAME: 周报提醒
+          MAIL_SUBJECT: 周报提醒：请写一下周报
+          MAIL_CONTENT: 今天是周五，记得写一下本周周报，整理本周工作进展、问题和下周计划。
         run: python send_reminder.py

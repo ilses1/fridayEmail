@@ -17,11 +17,13 @@
 
 在仓库的 `Settings -> Secrets and variables -> Actions` 中添加：
 
-- `SMTP_HOST`：SMTP 服务器地址，例如 `smtp.qq.com`
-- `SMTP_PORT`：SMTP 端口，例如 `587`
-- `SMTP_USER`：发件邮箱账号
-- `SMTP_PASSWORD`：SMTP 授权码或密码
-- `EMAIL_TO`：收件邮箱地址
+- `MAIL_HOST`：SMTP 服务器地址，例如 `smtp.qq.com`
+- `MAIL_PORT`：SMTP 端口，例如 `465` 或 `587`
+- `MAIL_USER`：发件邮箱账号
+- `MAIL_PASS`：SMTP 授权码或密码
+- `MAIL_RECEIVER`：收件邮箱地址
+
+兼容旧变量名：`SMTP_HOST`、`SMTP_PORT`、`SMTP_USER`、`SMTP_PASSWORD`、`EMAIL_TO`
 
 ## 定时说明
 
