@@ -1,0 +1,31 @@
+name: Weekly Friday Reminder
+
+on:
+  schedule:
+    # 09:40 Beijing Time = 01:40 UTC
+    - cron: '40 1 * * 5'
+  workflow_dispatch:
+
+jobs:
+  send-reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run reminder script
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_SUBJECT: 周报提醒：请写一下周报
+          EMAIL_BODY: 今天是周五，记得写一下本周周报，整理本周工作进展、问题和下周计划。
+          SENDER_NAME: 周报提醒
+        run: python send_reminder.py
